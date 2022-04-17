@@ -1,9 +1,13 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}
 Homepage
 {% endblock title %}
 
 {% block content %}
+
 <h1>Homepage</h1>
+<img class="maincover" src="{% static 'images/heart.png' %}">
+
 {% endblock content %}
