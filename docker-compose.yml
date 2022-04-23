@@ -8,8 +8,17 @@ services:
       - .:/code
     ports:
       - 8000:8000
-    
+    depends_on:
+      - db
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-3imu-lfwtd5o@sv8@phdo0i*zgkgy%_ifh=_9cboem5(8h6buy"
       - "DJANGO_DEBUG=True"
-    
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_tracker_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"  
+
+volumes:
+  postgres_tracker_data:

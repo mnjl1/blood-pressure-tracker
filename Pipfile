@@ -9,6 +9,8 @@ black = "22.3.0"
 django-crispy-forms = "1.14.0"
 django-allauth = "==0.50.0"
 environs = {version = "==9.5.0", extras = ["django"]}
+pipenv = "*"
+psycopg2-binary = "==2.9.3"
 
 [dev-packages]
 
