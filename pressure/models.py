@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 class BloodPressure(models.Model):
+    # TODO implement uuid
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,)

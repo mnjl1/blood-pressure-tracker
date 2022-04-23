@@ -1,11 +1,10 @@
-from pyexpat import model
-from urllib import request
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import BloodPressure
 
 
-class BloodPressureListView(generic.ListView):
+class BloodPressureListView(LoginRequiredMixin ,generic.ListView):
     model = BloodPressure
     context_object_name = 'pressure_list'
     template_name = 'pressure/pressure_list.html'

@@ -1,13 +1,15 @@
 from django.test import TestCase
 from django.urls import reverse
-from accounts.models import CustomUser
+from django.contrib.auth import get_user_model
+
 from .models import BloodPressure
 
 
 class BloodPressureTest(TestCase):
     
     def setUp(self):
-        self.user = CustomUser.objects.create(
+        self.user = get_user_model().objects.create_user(
+            username = 'Elon',
             email='e@e.com',
             password='123'
         )
@@ -25,10 +27,15 @@ class BloodPressureTest(TestCase):
         self.assertEqual(self.pressure.heart_rate, 60)
         self.assertEqual(self.user.email, 'e@e.com')
     
-    def test_pressure_list_view(self):
+    def test_pressure_list_view_for_logged_in_user(self):
         self.client.login(email='e@e.com', password='123')
         response = self.client.get(reverse('pressure_list'))
         self.assertEqual(response.status_code, 200)
     
+    def test_pressure_list_view_for_logged_out_user(self):
+        self.client.logout()
+        response = self.client.get(reverse('pressure_list'))
+        self.assertEqual(response.status_code, 302)
+
 
 
