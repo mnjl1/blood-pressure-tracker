@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+
+{% block title %}Books{% endblock title %}
+
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Systolic</th>
+        <th scope="col">Diastolic</th>
+        <th scope="col">Heart Rate</th>
+      </tr>
+    </thead>
+  {% for pressure in pressure_list %}
+    <div>
+        <tbody>
+            <tr>
+              <th scope="row">{{ pressure.created }}</th>
+              <td>{{ pressure.systolic_pressure }}</td>
+              <td>{{ pressure.diastolic_pressure}} </td>
+              <td>{{ pressure.heart_rate }} </td>
+            </tr>
+        </tbody>
+    </div>
+  {% endfor %}
+</table>
+{% endblock content %}
