@@ -50,12 +50,12 @@ INSTALLED_APPS = [
     'pages',
 
     # Third party
-    'crispy_forms',
+    'django_bootstrap5',
     'allauth',
     'allauth.account',
 ]
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
+# CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

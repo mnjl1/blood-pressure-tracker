@@ -1,13 +1,16 @@
 {% extends '_base.html' %}
-{% load crispy_forms_tags %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 
 <form method="post">
   {% csrf_token %}
   
-  {{ form|crispy }}
-  <input type="submit" value="Submit">
+  {% bootstrap_form form %}
+
+  {% bootstrap_button button_type="submit" content="OK" %}
+  {% bootstrap_button button_type="reset" content="Cancel" %}
+
 </form>
 
 {% endblock content %}
