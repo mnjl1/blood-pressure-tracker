@@ -146,7 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # django-allauth config
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'pressure_list'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
 
 SITE_ID = 1
@@ -156,7 +156,13 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 # TODO change to smtp gmail
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bloodpressuretracking@gmail.com'
+EMAIL_HOST_PASSWORD = 'a?3L83!qxCLozQ5E'
+EMAIL_PORT = 587
+
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -165,3 +171,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
 DEFAULT_FROM_EMAIL = 'bloodpressuretracking@gmail.com'
+
+
