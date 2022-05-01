@@ -131,8 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))] # new
-STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 STATICFILES_FINDERS = [ # new
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -157,11 +157,11 @@ AUTHENTICATION_BACKENDS = (
 )
 # TODO change to smtp gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bloodpressuretracking@gmail.com'
-EMAIL_HOST_PASSWORD = 'a?3L83!qxCLozQ5E'
+EMAIL_HOST = env.str("EMAIL_HOST")
 EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True

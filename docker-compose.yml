@@ -13,6 +13,12 @@ services:
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-3imu-lfwtd5o@sv8@phdo0i*zgkgy%_ifh=_9cboem5(8h6buy"
       - "DJANGO_DEBUG=True"
+
+      - "EMAIL_USE_TLS=True"
+      - "EMAIL_HOST=smtp.gmail.com"
+      - "EMAIL_HOST_USER=bloodpressuretracking@gmail.com"
+      - "EMAIL_HOST_PASSWORD=a?3L83!qxCLozQ5E"
+      
   db:
     image: postgres:14
     volumes:
