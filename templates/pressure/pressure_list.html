@@ -21,6 +21,7 @@
               <td>{{ pressure.systolic_pressure }}</td>
               <td>{{ pressure.diastolic_pressure}} </td>
               <td>{{ pressure.heart_rate }} </td>
+              <td><a href="{% url 'pressure_delete' pressure.pk %}">Delete</a></td>
             </tr>
         </tbody>
     </div>

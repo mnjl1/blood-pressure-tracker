@@ -1,3 +1,4 @@
+from urllib import response
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -36,6 +37,14 @@ class BloodPressureTest(TestCase):
         self.client.logout()
         response = self.client.get(reverse('pressure_list'))
         self.assertEqual(response.status_code, 302)
+    
+    def test_delete_pressure(self):
+        self.client.login(email='e@e.com', password='123')
+        pressure_list = BloodPressure.objects.all()
+        pressure = pressure_list[0]
+        response =  self.client.get(reverse('pressure_delete', args=(str(pressure.id))), follow=True)
 
-
-
+        self.assertContains(response, 'Are you sure you want to delete')
+        self.client.post(reverse('pressure_delete', args=(str(pressure.id))), follow=True)
+        pressure_list = BloodPressure.objects.all()
+        self.assertEqual(pressure_list.count(), 0)

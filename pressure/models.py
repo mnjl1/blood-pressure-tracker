@@ -21,4 +21,4 @@ class BloodPressure(models.Model):
         return f'{self.user}, {self.systolic_pressure}, {self.diastolic_pressure}, {self.heart_rate}'
     
     def get_absolute_url(self): # new
-        return reverse('pressure_detail', args=[str(self.id)])
+        return reverse('pressure_delete', args=[str(self.id)])
