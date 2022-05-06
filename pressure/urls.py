@@ -6,5 +6,5 @@ from .views import BloodPressureListView, BloodPressureCreateView, BloodPressure
 urlpatterns = [
     path('', BloodPressureListView.as_view(), name='pressure_list'),
     path('add/', BloodPressureCreateView.as_view(), name='pressure_create'),
-    path('delete/<int:pk>/', BloodPressureDeleteView.as_view(), name='pressure_delete'),
+    path('delete/<uuid:pk>', BloodPressureDeleteView.as_view(), name='pressure_delete'),
 ]

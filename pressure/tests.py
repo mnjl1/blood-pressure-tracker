@@ -42,9 +42,9 @@ class BloodPressureTest(TestCase):
         self.client.login(email='e@e.com', password='123')
         pressure_list = BloodPressure.objects.all()
         pressure = pressure_list[0]
-        response =  self.client.get(reverse('pressure_delete', args=(str(pressure.id))), follow=True)
+        response =  self.client.get(reverse('pressure_delete', kwargs={'pk': pressure.id}), follow=True)
 
         self.assertContains(response, 'Are you sure you want to delete')
-        self.client.post(reverse('pressure_delete', args=(str(pressure.id))), follow=True)
+        self.client.post(reverse('pressure_delete', kwargs={'pk': pressure.id}), follow=True)
         pressure_list = BloodPressure.objects.all()
         self.assertEqual(pressure_list.count(), 0)
