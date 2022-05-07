@@ -29,3 +29,6 @@ class BloodPressureCreateView(LoginRequiredMixin, generic.CreateView):
 class BloodPressureDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = BloodPressure
     success_url = reverse_lazy('pressure_list')
+
+
+# TODO Django charts or some another implementations

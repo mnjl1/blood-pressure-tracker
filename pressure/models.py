@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 class BloodPressure(models.Model):
-    # TODO implement uuid
     id = models.URLField(
         primary_key=True,
         default=uuid.uuid4,
@@ -14,6 +13,7 @@ class BloodPressure(models.Model):
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,)
+    # TODO add validation for pressure fields
     systolic_pressure = models.IntegerField(blank=False)
     diastolic_pressure = models.IntegerField(blank=False)
     heart_rate = models.IntegerField(blank=True)

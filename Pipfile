@@ -11,6 +11,7 @@ environs = {version = "==9.5.0", extras = ["django"]}
 pipenv = "*"
 psycopg2-binary = "==2.9.3"
 django-bootstrap5 = "==21.3"
+django-debug-toolbar = "==3.4.0"
 
 [dev-packages]
 
