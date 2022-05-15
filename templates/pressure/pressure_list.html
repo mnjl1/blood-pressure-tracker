@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 
-{% block title %}Books{% endblock title %}
+{% block title %}Pressure List{% endblock title %}
 
 {% block content %}
 <a class="btn btn-primary" href="{% url 'pressure_create' %}" role="button">Add Pressure</a>
@@ -17,7 +17,7 @@
     <div>
         <tbody>
             <tr>
-              <th scope="row">{{ pressure.created }}</th>
+              <th scope="row">{{ pressure.created|date }}</th>
               <td>{{ pressure.systolic_pressure }}</td>
               <td>{{ pressure.diastolic_pressure}} </td>
               <td>{{ pressure.heart_rate }} </td>

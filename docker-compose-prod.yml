@@ -17,7 +17,7 @@ services:
       - "EMAIL_USE_TLS=True"
       - "EMAIL_HOST=smtp.gmail.com"
       - "EMAIL_HOST_USER=bloodpressuretracking@gmail.com"
-      - "EMAIL_HOST_PASSWORD=a?3L83!qxCLozQ5E"
+      - "EMAIL_HOST_PASSWORD=qgriiylopfvmigmg"
       
   db:
     image: postgres:14
