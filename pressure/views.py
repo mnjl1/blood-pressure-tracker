@@ -5,9 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import BloodPressure
 
 
-class BloodPressureListView(LoginRequiredMixin ,generic.ListView):
+class BloodPressureListView(LoginRequiredMixin, generic.ListView):
+    paginate_by = 10
     model = BloodPressure
-    context_object_name = 'pressure_list'
     template_name = 'pressure/pressure_list.html'
 
     def get_queryset(self):
