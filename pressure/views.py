@@ -3,6 +3,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import BloodPressure
+from .utils import average_pressure
 
 
 class BloodPressureListView(LoginRequiredMixin, generic.ListView):
@@ -12,6 +13,15 @@ class BloodPressureListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BloodPressure.objects.filter(user=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        user_list = BloodPressure.objects.filter(user=self.request.user)
+        systolic_pressure_list = [p.systolic_pressure for p in user_list]
+        diastolic_pressure_list = [p.diastolic_pressure for p in user_list]
+        context['average_systolic_pressure'] = average_pressure(systolic_pressure_list)
+        context['average_diastolic_pressure'] = average_pressure(diastolic_pressure_list)
+        return context
 
 
 class BloodPressureCreateView(LoginRequiredMixin, generic.CreateView):

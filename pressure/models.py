@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+
+
 class BloodPressure(models.Model):
     id = models.URLField(
         primary_key=True,
@@ -22,6 +24,9 @@ class BloodPressure(models.Model):
 
     class Meta:
         ordering = ('-created',)
+    
+    def month_when_created(self):
+        return self.created.month
     
     def __str__(self):
         return f'{self.user}, {self.systolic_pressure}, {self.diastolic_pressure}, {self.heart_rate}'

@@ -3,7 +3,18 @@
 {% block title %}Pressure List{% endblock title %}
 
 {% block content %}
-<a class="btn btn-primary" href="{% url 'pressure_create' %}" role="button">Add Pressure</a>
+
+<div class="class="btn-group btn-group-lg" role="group"">
+  <button type="button" class="btn btn-primary">
+    Average systolic <span class="badge text-bg-secondary">{{ average_systolic_pressure }}</span>
+  </button>
+  <button type="button" class="btn btn-primary">
+    Average diastolic <span class="badge text-bg-secondary">{{ average_diastolic_pressure }}</span>
+  </button>
+</div>
+
+<br>
+<a class="btn btn-secondary" href="{% url 'pressure_create' %}" role="button">Add Pressure</a>
 <table class="table">
     <thead>
       <tr>
