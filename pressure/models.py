@@ -4,9 +4,15 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
+class TimeStampModel(models.Model):
+    last_modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        abstract = True
+    
 
-class BloodPressure(models.Model):
+class BloodPressure(TimeStampModel):
     id = models.URLField(
         primary_key=True,
         default=uuid.uuid4,
@@ -19,8 +25,8 @@ class BloodPressure(models.Model):
     systolic_pressure = models.IntegerField(blank=False)
     diastolic_pressure = models.IntegerField(blank=False)
     heart_rate = models.IntegerField(blank=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
+    # last_modified = models.DateTimeField(auto_now=True)
+    # created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ('-created',)
