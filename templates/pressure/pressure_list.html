@@ -3,6 +3,21 @@
 {% block title %}Pressure List{% endblock title %}
 
 {% block content %}
+  {{month}}
+<div>
+  {% for year in date_year_set %}
+    <div class="btn-group" role="group" aria-label="Month and year">
+      <button type="button" onclick="sendYear(this.innerHTML)" class="btn btn-outline-primary">{{ year }}</button>
+    </div>
+  {% endfor %}
+</div>
+<div>
+  {% for month in date_month_set %}
+  <div class="btn-group" role="group" aria-label="Month and year">
+    <button type="button" onclick="sendMonth(this.innerHTML)" class="btn btn-outline-primary">{{ month }}</button>
+</div>
+{% endfor %}
+</div>
 
 <div class="class="btn-group btn-group-lg" role="group"">
   <button type="button" class="btn btn-primary">
@@ -26,15 +41,15 @@
     </thead>
   {% for pressure in page_obj %}
     <div>
-        <tbody>
-            <tr>
-              <th scope="row">{{ pressure.created|date }}</th>
-              <td>{{ pressure.systolic_pressure }}</td>
-              <td>{{ pressure.diastolic_pressure}} </td>
-              <td>{{ pressure.heart_rate }} </td>
-              <td><a href="{% url 'pressure_delete' pressure.pk %}">Delete</a></td>
-            </tr>
-        </tbody>
+      <tbody>
+          <tr>
+            <th scope="row">{{ pressure.created|date }}</th>
+            <td>{{ pressure.systolic_pressure }}</td>
+            <td>{{ pressure.diastolic_pressure}} </td>
+            <td>{{ pressure.heart_rate }} </td>
+            <td><a href="{% url 'pressure_delete' pressure.pk %}">Delete</a></td>
+          </tr>
+      </tbody>
     </div>
   {% endfor %}
   
@@ -57,5 +72,45 @@
       {% endif %}
   </span>
 </div>
+
+<script type="text/javascript">
+  
+  function getCookie(c_name) {
+    var c_value = " " + document.cookie;
+    var c_start = c_value.indexOf(" " + c_name + "=");
+    if (c_start == -1) {
+        c_value = null;
+    }
+    else {
+        c_start = c_value.indexOf("=", c_start) + 1;
+        var c_end = c_value.indexOf(";", c_start);
+        if (c_end == -1) {
+            c_end = c_value.length;
+        }
+        c_value = unescape(c_value.substring(c_start,c_end));
+    }
+    return c_value;
+  }
+
+  function sendYear(value) {
+    url = 'http://localhost:8000/'
+    fetch(url, {
+      method: 'POST'
+    }
+    ).then(console.log(value))
+  }
+
+  function sendMonth(value) {
+    url = 'http://localhost:8000/'
+    fetch(url, {
+      method: 'POST',
+      headers: {
+         "X-CSRFToken": getCookie("csrftoken")
+        },
+    }
+    ).then(console.log(value))
+  }
+</script>
+
 
 {% endblock content %}

@@ -1,4 +1,5 @@
 
+from datetime import datetime
 import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -25,14 +26,17 @@ class BloodPressure(TimeStampModel):
     systolic_pressure = models.IntegerField(blank=False)
     diastolic_pressure = models.IntegerField(blank=False)
     heart_rate = models.IntegerField(blank=True)
-    # last_modified = models.DateTimeField(auto_now=True)
-    # created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ('-created',)
     
-    def month_when_created(self):
+    @property
+    def month_when_created(self)-> int:
         return self.created.month
+    
+    @property
+    def year_when_created(self)-> int:
+        return self.created.year
     
     def __str__(self):
         return f'{self.user}, {self.systolic_pressure}, {self.diastolic_pressure}, {self.heart_rate}'
