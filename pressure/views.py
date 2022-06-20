@@ -4,7 +4,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import BloodPressure
-from .utils import average_pressure
+from .utils import average_pressure, last_month_year
 
 
 class BloodPressureListView(LoginRequiredMixin, generic.ListView):
@@ -35,9 +35,11 @@ class BloodPressureListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         user = self.request.user
-        month = self.request.session.get('month', 5)
-        year = self.request.session.get('year', 2022)
-            
+        last_entry = last_month_year(user)
+        default_year = last_entry[0]
+        default_month = last_entry[1]
+        month = self.request.session.get('month', default_month)
+        year = self.request.session.get('year', default_year)
         return BloodPressure.objects.filter(user=user, created__year=year, created__month=month)
     
 
