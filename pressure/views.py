@@ -1,4 +1,4 @@
-from venv import create
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,13 +12,6 @@ class BloodPressureListView(LoginRequiredMixin, generic.ListView):
     model = BloodPressure
     template_name = 'pressure/pressure_list.html'
 
-    def get_queryset(self):
-        user = self.request.user
-        # month_when_created = self.request['month']
-        # TODO change to dinamic filtering
-        return BloodPressure.objects.filter(user=user, created__year=2022, created__month=5)
-    
-    
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         user_list = BloodPressure.objects.filter(user=self.request.user)
@@ -31,6 +24,21 @@ class BloodPressureListView(LoginRequiredMixin, generic.ListView):
         context['date_year_set'] = date_year_set
         context['date_month_set'] = date_month_set
         return context
+
+    def post(self, request, *args, **kwargs):
+        if 'month' in self.request.POST:
+            request.session['month'] = self.request.POST.get('month')
+        if 'year' in self.request.POST:
+            request.session['year'] = self.request.POST.get('year')
+        return HttpResponseRedirect('/pressure/')
+        
+
+    def get_queryset(self):
+        user = self.request.user
+        month = self.request.session.get('month', 5)
+        year = self.request.session.get('year', 2022)
+            
+        return BloodPressure.objects.filter(user=user, created__year=year, created__month=month)
     
 
 

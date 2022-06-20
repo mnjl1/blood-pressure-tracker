@@ -3,21 +3,28 @@
 {% block title %}Pressure List{% endblock title %}
 
 {% block content %}
-  {{month}}
 <div>
   {% for year in date_year_set %}
     <div class="btn-group" role="group" aria-label="Month and year">
-      <button type="button" onclick="sendYear(this.innerHTML)" class="btn btn-outline-primary">{{ year }}</button>
+      <button type="button" onclick="getYear(this.innerHTML)" class="btn btn-outline-primary">{{ year }}</button>
     </div>
   {% endfor %}
 </div>
 <div>
   {% for month in date_month_set %}
   <div class="btn-group" role="group" aria-label="Month and year">
-    <button type="button" onclick="sendMonth(this.innerHTML)" class="btn btn-outline-primary">{{ month }}</button>
+    <button type="button" onclick="getMonth(this.innerHTML)" class="btn btn-outline-primary">{{ month }}</button>
 </div>
 {% endfor %}
 </div>
+<form id="year" method="POST">
+  {% csrf_token %}
+  <input type="hidden"  name="year" value="">
+</form>
+<form id="month" method="POST">
+  {% csrf_token %}
+  <input type="hidden"  name="month" value="">
+</form>
 
 <div class="class="btn-group btn-group-lg" role="group"">
   <button type="button" class="btn btn-primary">
@@ -92,24 +99,18 @@
     return c_value;
   }
 
-  function sendYear(value) {
-    url = 'http://localhost:8000/'
-    fetch(url, {
-      method: 'POST'
-    }
-    ).then(console.log(value))
+  function getYear(value) {
+    var monthForm = document.forms['year'];
+    monthForm.elements["year"].value = value;
+    document.getElementById("year").submit();
   }
 
-  function sendMonth(value) {
-    url = 'http://localhost:8000/'
-    fetch(url, {
-      method: 'POST',
-      headers: {
-         "X-CSRFToken": getCookie("csrftoken")
-        },
-    }
-    ).then(console.log(value))
+  function getMonth(value) {
+    var monthForm = document.forms['month'];
+    monthForm.elements["month"].value = value;
+    document.getElementById("month").submit();
   }
+
 </script>
 
 
