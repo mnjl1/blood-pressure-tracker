@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import BloodPressure
 from .utils import average_pressure, last_month_year
 
+from datetime import date
+
 
 class BloodPressureListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
@@ -17,13 +19,14 @@ class BloodPressureListView(LoginRequiredMixin, generic.ListView):
         user_list = BloodPressure.objects.filter(user=self.request.user)
         systolic_pressure_list = [p.systolic_pressure for p in user_list]
         diastolic_pressure_list = [p.diastolic_pressure for p in user_list]
-        date_year_set = {p.year_when_created  for p in user_list}
-        date_month_set =  {p.month_when_created  for p in user_list}
+        date_year_set = {p.created.year  for p in user_list}
+        date_month_set =  {p.created.month  for p in user_list}
         context['average_systolic_pressure'] = average_pressure(systolic_pressure_list)
         context['average_diastolic_pressure'] = average_pressure(diastolic_pressure_list)
         context['date_year_set'] = date_year_set
         context['date_month_set'] = date_month_set
         return context
+
 
     def post(self, request, *args, **kwargs):
         if 'month' in self.request.POST:

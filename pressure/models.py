@@ -31,7 +31,7 @@ class BloodPressure(TimeStampModel):
         ordering = ('-created',)
     
     @property
-    def month_when_created(self)-> int:
+    def month_when_created(self)-> datetime:
         return self.created.month
     
     @property
