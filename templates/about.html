@@ -1,11 +1,12 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
 About
 {% endblock title %}
 
 {% block content %}
-<h1>Simple way to track your pressure:</h1>
-<p>Sign up and add you record evry time you messure your blood pressure.</p>
+<h1>{% trans "Simple way to track your pressure" %}</h1>
+<p>{% trans "Sign up and add you record evry time you messure your blood pressure" %}.</p>
 {% endblock content %}

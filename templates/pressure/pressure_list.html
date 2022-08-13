@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
 {% block title %}Pressure List{% endblock title %}
 
@@ -28,22 +29,22 @@
 
 <div class="class="btn-group btn-group-lg" role="group"">
   <button type="button" class="btn btn-primary">
-    Average systolic <span class="badge text-bg-secondary">{{ average_systolic_pressure }}</span>
+    {% trans "Average systolic" %} <span class="badge text-bg-secondary">{{ average_systolic_pressure }}</span>
   </button>
   <button type="button" class="btn btn-primary">
-    Average diastolic <span class="badge text-bg-secondary">{{ average_diastolic_pressure }}</span>
+    {% trans "Average diastolic" %} <span class="badge text-bg-secondary">{{ average_diastolic_pressure }}</span>
   </button>
 </div>
 
 <br>
-<a class="btn btn-secondary" href="{% url 'pressure_create' %}" role="button">Add Pressure</a>
+<a class="btn btn-secondary" href="{% url 'pressure_create' %}" role="button">{% trans "Add Pressure" %}</a>
 <table class="table">
-    <thead>
+  <thead>
       <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Systolic</th>
-        <th scope="col">Diastolic</th>
-        <th scope="col">Heart Rate</th>
+        <th scope="col">{% trans "Date" %}</th>
+        <th scope="col">{% trans "Systolic" %}</th>
+        <th scope="col">{% trans "Diastolic" %}</th>
+        <th scope="col">{% trans "Heart Rate" %}</th>
       </tr>
     </thead>
   {% for pressure in page_obj %}
@@ -54,7 +55,7 @@
             <td>{{ pressure.systolic_pressure }}</td>
             <td>{{ pressure.diastolic_pressure}} </td>
             <td>{{ pressure.heart_rate }} </td>
-            <td><a href="{% url 'pressure_delete' pressure.pk %}">Delete</a></td>
+            <td><a href="{% url 'pressure_delete' pressure.pk %}">{% trans "Delete"%}</a></td>
           </tr>
       </tbody>
     </div>

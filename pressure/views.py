@@ -6,7 +6,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import BloodPressure
 from .utils import average_pressure, last_month_year
 
-from datetime import date
 
 
 class BloodPressureListView(LoginRequiredMixin, generic.ListView):

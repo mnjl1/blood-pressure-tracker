@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
 {% block title %}
 Delete Confirm
@@ -6,7 +7,7 @@ Delete Confirm
 
 {% block content %}
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <p>Are you sure you want to delete {{ object }}? %}</p>
     {{ form }}
     <input type="submit" value="Confirm">
 </form>
