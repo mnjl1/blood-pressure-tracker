@@ -8,5 +8,6 @@ release:
   image: web
   command:
     - python manage.py collectstatic --noinput
+    - python mange.py compilemessages
 run:
   web: gunicorn config.wsgi
