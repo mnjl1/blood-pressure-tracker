@@ -1,5 +1,5 @@
 from .models import BloodPressure
-
+from datetime import datetime
 
 def average_pressure(pressure_list: list) -> int:
     if not pressure_list:
@@ -9,5 +9,8 @@ def average_pressure(pressure_list: list) -> int:
 
 
 def last_month_year(user)->tuple:
-    last_entry = BloodPressure.objects.filter(user=user)[0]
-    return (last_entry.created.year, last_entry.created.month)
+    try:
+        last_entry = BloodPressure.objects.filter(user=user)[0]
+        return (last_entry.created.year, last_entry.created.month)
+    except:
+        return (datetime.now().year, datetime.now().month)
