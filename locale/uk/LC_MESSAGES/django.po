@@ -1528,7 +1528,7 @@ msgid "Simple way to track your pressure"
 msgstr "Простий шлях відслідковувати кров'яній тиск"
 
 #: templates/about.html:11
-msgid "Sign up and add you record evry time you messure your blood pressure"
+msgid "Sign up and add you record every time you messure your blood pressure"
 msgstr "Зареєструйтесь та вносіть записи кожен раз після вимірювання"
 
 #: templates/account/email/email_confirmation_message.txt:4

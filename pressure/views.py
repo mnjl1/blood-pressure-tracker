@@ -7,7 +7,6 @@ from .models import BloodPressure
 from .utils import average_pressure, last_month_year
 
 
-
 class BloodPressureListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
     model = BloodPressure
@@ -60,7 +59,3 @@ class BloodPressureCreateView(LoginRequiredMixin, generic.CreateView):
 class BloodPressureDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = BloodPressure
     success_url = reverse_lazy('pressure_list')
-
-
-
-# TODO Django charts or some another implementations
