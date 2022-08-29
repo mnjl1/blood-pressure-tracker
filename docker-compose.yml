@@ -12,7 +12,6 @@ services:
     depends_on:
       - db
     environment:
-      - "DJANGO_SECRET_KEY=django-insecure-3imu-lfwtd5o@sv8@phdo0i*zgkgy%_ifh=_9cboem5(8h6buy"
       - "DJANGO_DEBUG=True"
       - "DJANGO_SECURE_SSL_REDIRECT=False"
       - "DJANGO_SECURE_HSTS_SECONDS=0"
@@ -20,11 +19,8 @@ services:
       - "DJANGO_SECURE_HSTS_PRELOAD=False"
       - "DJANGO_SESSION_COOKIE_SECURE=False"
       - "DJANGO_CSRF_COOKIE_SECURE=False"
-
       - "EMAIL_USE_TLS=True"
       - "EMAIL_HOST=smtp.gmail.com"
-      - "EMAIL_HOST_USER=bloodpressuretracking@gmail.com"
-      - "EMAIL_HOST_PASSWORD=qgriiylopfvmigmg"
       
   db:
     image: postgres:14

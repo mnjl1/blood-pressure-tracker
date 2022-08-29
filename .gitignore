@@ -62,9 +62,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# docker
-docker-compose.yml
-# docker-compose-prod.yml
 
 # Translations
 *.mo
